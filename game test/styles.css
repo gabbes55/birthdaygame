@@ -1,0 +1,192 @@
+/* Genel ayarlar */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+/* Header tamamen en üste yapışık ve sabit */
+#game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: linear-gradient(90deg, #6a0dad, #88008f);
+  color: white;
+  border-bottom: 2px solid #4e005a;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed; /* Header sabit */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Diğer elemanların önünde olsun */
+}
+
+#game-header h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+
+#game-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+  text-align: right;
+}
+
+#game-info span {
+  display: block;
+  font-weight: bold;
+  color: #f3f4f6;
+}
+
+/* Soruların header'ın altında başlamasını sağla */
+#game-container {
+  margin-top: 80px; /* Header yüksekliğine göre ayarla */
+  max-width: 400px;
+  width: 90%;
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+  #game-header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+
+  #game-info {
+      flex-direction: row;
+      justify-content: space-around;
+      width: 100%;
+      gap: 5px;
+  }
+
+  #game-header h1 {
+      margin-bottom: 10px;
+  }
+}
+
+#game-container {
+  max-width: 400px;
+  width: 90%;
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.hidden {
+  display: none;
+}
+
+input, button {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button {
+  background-color: #88008f;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #37003a;
+}
+
+/* Soru resmi */
+#question-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Mobil duyarlılık */
+@media (max-width: 768px) {
+  body {
+      font-size: 14px;
+  }
+
+  #game-container {
+      padding: 15px;
+  }
+
+  input, button {
+      font-size: 14px;
+  }
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#leaderboard-container {
+  background: #fff;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#leaderboard-container h1 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#congrats-message p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+#leaderboard {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+#leaderboard li {
+  background: #f3f4f6;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#leaderboard-info {
+  font-size: 14px;
+  color: #333;
+  font-style: italic;
+  margin-top: 20px;
+  line-height: 1.5;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Quiz Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <header id="game-header">
+        <h1>My Quiz Game</h1>
+        <div id="game-info">
+            <span id="player-name">👤</span>
+            <span id="restart-count">🔄 0</span>
+            <span id="elapsed-time">⏰ 0</span>
+        </div>        
+    </header>
+
+    <div id="game-container">
+        <!-- Açılış ekranı -->
+        <div id="start-container">
+            <h1>Welcome to the Quiz Game!</h1>
+            <p>Enter your name to get started:</p>
+            <input type="text" id="player-name-input" placeholder="Your name...">
+            <button id="start-game">Start</button>
+            <p id="validation-error" class="error hidden">Please enter your name!</p>
+        </div>
+
+        <!-- Soru ve cevap bölümü -->
+        <div id="question-container" class="hidden">
+            <h1 id="level-header">Level 1</h1>
+            <img id="question-image" class="hidden" alt="Question Image" />
+            <p id="question">What is 2 + 2?</p>
+            <input type="text" id="answer-input" placeholder="Type your answer...">
+            <button id="submit-answer">Submit</button>
+        </div>
+
+        <!-- Feedback ekranı -->
+        <div id="feedback-container" class="hidden">
+            <h1 id="feedback-title"></h1>
+            <p id="feedback-text"></p>
+            <button id="next-level" class="hidden">Next Level</button>
+            <button id="try-again" class="hidden">Try Again</button>
+        </div>
+
+        <!-- Leaderboard -->
+        <div id="leaderboard-container" class="hidden">
+            <h1>Leaderboard</h1>
+            <div id="congrats-message" class="hidden">
+                <p>Congratulations, <span id="winner-name"></span>! You completed the game!</p>
+            </div>
+            <ul id="leaderboard"></ul>
+            <p id="leaderboard-info" class="leaderboard-info">
+                Leaderboard gerçek değil malesef :), sonucunu ss al ve Irmak'la whatsapp'tan paylaş! 🎉🎉
+            </p>
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
