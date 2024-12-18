@@ -1,8 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
     const levels = [
-        { question: "Irmak'ın lisesinin adı nedir?", answer: "4", image: "images/lise.jpg" },
-        { question: "Irmak nerelidir?", answer: "4", image: "images/paris.jpg" },
-        { question: "Irmak gerçekte nerelidir?", answer: "4", image: "images/location.jpg" },
+        { question: "Irmak’ın en sevdiği renk nedir?", answer: ["mor"], image: "images/1.jpg" },
+        { question: "Irmak’ın kötü özelliği nedir?", answer: [""], image: "images/2.jpg" },
+        { question: "Irmak’ın ortaokulunun adı nedir?", answer: ["sev"], image: "images/3.jpg" },
+        { question: "Irmak’ın lisesinin adı nedir?", answer: ["saint joseph", "saint-joseph"], image: "images/4.jpg" },
+        { question: "Irmak’ın üniversitesinin adı nedir?", answer: ["yeditepe", "yeditepe üniversitesi"], image: "images/5.jpg" },
+        { question: "Irmak’ın doktora yaptığı üniversitesinin adı nedir?", answer: ["marmara", "Marmara Üniversitesi"], image: "images/6.jpg" },
+        { question: "30 senenin önemli bir bölümünü eğitime adayan Irmak’ı bir tebrik edelim!", answer: ["tebrikler", "bravo", "tebrik", "tebrik ederim", "helal olsun"], image: "images/7.jpg" },
+        { question: "Irmak nerelidir?", answer: ["İstanbul", "istanbul"], image: "images/8.jpg" },
+        { question: "Irmak gerçekte nerelidir?", answer: ["artvin"], image: "images/9.jpg" },
+        { question: "Irmak’ın uzmanlık yaptığı bölüm nedir?", answer: ["periodontoloji"], image: "images/10.jpg" },
+        { question: "Irmak hangi sporu deliler gibi takip ediyor?", answer: ["voleybol"], image: "images/11.jpg" },
+        { question: "Irmak ne yemez?", answer: ["mantar"], image: "images/12.jpg" },
+        { question: "Irmak’ın sörf yaptığı yerin adı nedir?", answer: ["gülbahçe", "urla", "bb kitesurfing"], image: "images/13.jpg" },
+        { question: "Irmak’ın en sevdiği kokteyl nedir?", answer: ["moscow mule"], image: "images/14.jpg" },
+        { question: "Irmak hayatının bir bölümünü hangi ülkede yaşamıştır?", answer: ["kazakistan"], image: "images/15.jpg" },
+        { question: "Irmak’ın en sevdiği meyve nedir?", answer: ["şeftali", "karpuz", "çilek"], image: "images/16.jpg" },
+        { question: "Irmak uykuyu sever mi?", answer: ["evet", "sever", "yes", "çok sever"], image: "images/17.jpg" },
+        { question: "Irmak’ın gardırobunda en çok nasıl kıyafetler bulunur?", answer: ["simli", "parıltılı"], image: "images/18.jpg" },
+        { question: "Irmak en son hangi ülkeye gitmiştir?", answer: ["ingiltere", "İngiltere", "UK", "birleşik krallık"], image: "images/19.jpg" },
+        { question: "Irmak'ın madalyalarının olduğu spor nedir?'", answer: ["yelken", "yelkencilik",], image: "images/20.jpg" },
+        { question: "Irmak’ın en sevdiği hayvan nedir?", answer: ["köpek"], image: "images/21.jpg" },
+        { question: "Irmak'ı kaçıncı soruda tebrik ettik?", answer: ["yedi","7" ], image: "images/22.jpg" },
+        { question: "Irmak'ın ormanda yaptığı sporun adı?", answer: ["oryantiring","orienteering" ], image: "images/23.jpg" },
+        { question: "Evet quizin sonuna geldik katılım sağladığın için teşekkürler! TDK'ya uygun iyikidoğdunırmak yazarsan quiz bitiyor!", answer: ["iyi ki doğdun", "iyi ki doğdun ırmak", "İyi ki doğdun ırmak", "İyi ki doğdun"], image: "images/24.jpg" },
     ];
 
     let currentLevel = 0;
@@ -55,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function startLevel() {
         const currentQuestion = levels[currentLevel];
-        levelHeader.textContent = `Level ${currentLevel + 1}`;
+        levelHeader.textContent = `Soru ${currentLevel + 1}`;
         questionElement.textContent = currentQuestion.question;
         answerInput.value = "";
 
@@ -70,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
     submitButton.addEventListener("click", () => {
         const userAnswer = answerInput.value.trim();
         const correctAnswer = levels[currentLevel].answer;
-        if (userAnswer === correctAnswer) {
+        if (correctAnswer.some(answer => answer.toLowerCase() === userAnswer.toLowerCase())) {
             showFeedback(true);
         } else {
             showFeedback(false);
@@ -89,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     tryAgainButton.addEventListener("click", () => {
         feedbackContainer.classList.add("hidden");
-        currentLevel = 0;
+        currentLevel = Math.max(0, currentLevel - 5);
         restartCount++;
         restartCountDisplay.textContent = `🔄 ${restartCount}`;
         questionContainer.classList.remove("hidden");
@@ -104,15 +125,15 @@ document.addEventListener("DOMContentLoaded", function () {
         questionContainer.classList.add("hidden");
 
         if (correct) {
-            feedbackTitle.textContent = `Level ${currentLevel + 1} Completed! 🎉`;
-            feedbackText.textContent = "Great job!";
+            feedbackTitle.textContent = `Soru ${currentLevel + 1} Tamamlandı! 🎉`;
+            feedbackText.textContent = "Süper Bildin!";
             nextLevelButton.classList.remove("hidden");
             tryAgainButton.classList.add("hidden");
 
             playConfetti();
         } else {
-            feedbackTitle.textContent = "Incorrect Answer!";
-            feedbackText.textContent = "Please try again.";
+            feedbackTitle.textContent = "Yanlış Cevap!";
+            feedbackText.textContent = "Lütfen Tekrar Deneyiniz!";
             tryAgainButton.classList.remove("hidden");
             nextLevelButton.classList.add("hidden");
 
@@ -122,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function playConfetti() {
         var scalar = 4;
-        var particleCount = 150;
+        var particleCount = 75;
         var celebrationEmoji = confetti.shapeFromText({ text: '🎉', scalar });
         var partyPopperEmoji = confetti.shapeFromText({ text: '🎊', scalar });
         var threeEmoji = confetti.shapeFromText({ text: '3️⃣', scalar });
