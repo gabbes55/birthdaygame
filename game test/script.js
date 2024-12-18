@@ -31,11 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let totalElapsedTime = 0; // Tracks total time across restarts
     let restartCount = 0;
     let intervalID;
-
-    const leaderboard = [
-        { name: "Orkun", time: 45, restarts: 1 },
-        { name: "Irmak", time: 30, restarts: 0 },
-    ];
     
 
     const startContainer = document.getElementById("start-container");
@@ -183,18 +178,30 @@ document.addEventListener("DOMContentLoaded", function () {
         leaderboardContainer.classList.remove("hidden");
         congratsMessage.classList.remove("hidden");
         document.getElementById("winner-name").textContent = playerName;
-
+    
         stopTimer();
-
-        leaderboard.push({ name: playerName, time: totalElapsedTime, restarts: restartCount });
-        leaderboard.sort((a, b) => a.time - b.time);
-
-        const leaderboardList = document.getElementById("leaderboard");
-        leaderboardList.innerHTML = "";
-        leaderboard.forEach((entry, index) => {
+    
+    
+        db.collection("leaderboard").add({
+          name: playerName,
+          time: totalElapsedTime,
+          restarts: restartCount
+        })
+        .then(() => {
+          // Veriyi ekledikten sonra sıralı bir şekilde tekrar çekelim
+          return db.collection("leaderboard").orderBy("time", "asc").get();
+        })
+        .then((snapshot) => {
+          const leaderboardList = document.getElementById("leaderboard");
+          leaderboardList.innerHTML = "";
+          let index = 1;
+          snapshot.forEach(doc => {
+            const data = doc.data();
             const listItem = document.createElement("li");
-            listItem.innerHTML = `${index + 1}. 👤 ${entry.name} - ⏰ ${formatTime(entry.time)} - 🔄 ${entry.restarts}`;
+            listItem.innerHTML = `${index}. 👤 ${data.name} - ⏰ ${data.time}s - 🔄 ${data.restarts}`;
             leaderboardList.appendChild(listItem);
+            index++;
+          });
         });
     }
 
