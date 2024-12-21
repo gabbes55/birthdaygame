@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     const levels = [
-        { question: "Irmak’ın en sevdiği renk nedir?", answer: ["mor"], image: "images/1.jpg" },
+        { question: "Irmak’ın en sevdiği renk nedir?", answer: ["mor",], image: "images/1.jpg" },
         { question: "Irmak’ın kötü özelliği nedir?", answer: [""], image: "images/2.jpg" },
-        { question: "Irmak’ın ortaokulunun adı nedir?", answer: ["sev"], image: "images/3.jpg" },
+        { question: "Irmak’ın ortaokulunun adı nedir?", answer: ["sev","sev koleji", "SEV Amerikan Koleji"], image: "images/3.jpg" },
         { question: "Irmak’ın lisesinin adı nedir?", answer: ["saint joseph", "saint-joseph"], image: "images/4.jpg" },
         { question: "Irmak’ın üniversitesinin adı nedir?", answer: ["yeditepe", "yeditepe üniversitesi"], image: "images/5.jpg" },
-        { question: "Irmak’ın doktora yaptığı üniversitesinin adı nedir?", answer: ["marmara", "Marmara Üniversitesi"], image: "images/6.jpg" },
+        { question: "Irmak’ın doktora yaptığı üniversitesinin adı nedir?", answer: ["marmara", "marmara üniversitesi"], image: "images/6.jpg" },
         { question: "30 senenin önemli bir bölümünü eğitime adayan Irmak’ı bir tebrik edelim!", answer: ["tebrikler", "bravo", "tebrik", "tebrik ederim", "helal olsun"], image: "images/7.jpg" },
-        { question: "Irmak nerelidir?", answer: ["İstanbul", "istanbul"], image: "images/8.jpg" },
+        { question: "Irmak nerelidir?", answer: ["istanbul", "İstanbul"], image: "images/8.jpg" },
         { question: "Irmak gerçekte nerelidir?", answer: ["artvin"], image: "images/9.jpg" },
         { question: "Irmak’ın uzmanlık yaptığı bölüm nedir?", answer: ["periodontoloji"], image: "images/10.jpg" },
         { question: "Irmak hangi sporu deliler gibi takip ediyor?", answer: ["voleybol"], image: "images/11.jpg" },
@@ -18,12 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
         { question: "Irmak’ın en sevdiği meyve nedir?", answer: ["şeftali", "karpuz", "çilek"], image: "images/16.jpg" },
         { question: "Irmak uykuyu sever mi?", answer: ["evet", "sever", "yes", "çok sever"], image: "images/17.jpg" },
         { question: "Irmak’ın gardırobunda en çok nasıl kıyafetler bulunur?", answer: ["simli", "parıltılı"], image: "images/18.jpg" },
-        { question: "Irmak en son hangi ülkeye gitmiştir?", answer: ["ingiltere", "İngiltere", "UK", "birleşik krallık"], image: "images/19.jpg" },
-        { question: "Irmak'ın madalyalarının olduğu spor nedir?'", answer: ["yelken", "yelkencilik",], image: "images/20.jpg" },
+        { question: "Irmak en son hangi ülkeye gitmiştir?", answer: ["ingiltere", "İngiltere", "uk", "birleşik krallık"], image: "images/19.jpg" },
+        { question: "Irmak'ın madalyalarının olduğu spor nedir?'", answer: ["yelken", "yelkencilik"], image: "images/20.jpg" },
         { question: "Irmak’ın en sevdiği hayvan nedir?", answer: ["köpek"], image: "images/21.jpg" },
         { question: "Irmak'ı kaçıncı soruda tebrik ettik?", answer: ["yedi","7" ], image: "images/22.jpg" },
-        { question: "Irmak'ın ormanda yaptığı sporun adı?", answer: ["oryantiring","orienteering" ], image: "images/23.jpg" },
-        { question: "Evet quizin sonuna geldik katılım sağladığın için teşekkürler! TDK'ya uygun iyikidoğdunırmak yazarsan quiz bitiyor!", answer: ["iyi ki doğdun", "iyi ki doğdun ırmak", "İyi ki doğdun ırmak", "İyi ki doğdun"], image: "images/24.jpg" },
+        { question: "Irmak'ın ormanda yaptığı sporun adı?", answer: ["oryantiring","orienteering"], image: "images/23.jpg" },
+        { question: "Evet quizin sonuna geldik katılım sağladığın için teşekkürler! Irmak'ın doğum gününü kutlarsan quiz bitiyor!", answer: ["iyi ki doğdun", "iyi ki doğdun ırmak", "İyi ki doğdun Irmak", "İyi ki doğdun İrmak"], image: "images/24.jpg" },
     ];
 
     let currentLevel = 0;
@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let totalElapsedTime = 0; // Tracks total time across restarts
     let restartCount = 0;
     let intervalID;
-    
 
     const startContainer = document.getElementById("start-container");
     const questionContainer = document.getElementById("question-container");
@@ -54,7 +53,32 @@ document.addEventListener("DOMContentLoaded", function () {
     const tryAgainButton = document.getElementById("try-again");
     const validationError = document.getElementById("validation-error");
     const questionImage = document.getElementById("question-image");
+    const leaderboardList = document.getElementById("leaderboard");
 
+    // Leaderboard'ı gerçek zamanlı dinle
+    db.collection("leaderboard").orderBy("time", "asc").onSnapshot((snapshot) => {
+      leaderboardList.innerHTML = "";
+      let index = 1;
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const listItem = document.createElement("li");
+        let tempseconds = data.time;
+        let tempmins = Math.floor(tempseconds / 60);
+        let tempremainingSeconds  = tempseconds % 60;
+        listItem.innerHTML = `${index}. 👤 ${data.name} - ⏰ ${tempmins}:${tempremainingSeconds.toString().padStart(2, "0")} - 🔄 ${data.restarts}`;
+        leaderboardList.appendChild(listItem);
+        index++;
+      });
+    });
+
+   /* function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return minutes > 0
+            ? `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`
+            : `${remainingSeconds}`;
+    }
+*/
     startButton.addEventListener("click", () => {
         playerName = playerNameInput.value.trim();
         if (!playerName) {
@@ -84,9 +108,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     submitButton.addEventListener("click", () => {
-        const userAnswer = answerInput.value.trim();
-        const correctAnswer = levels[currentLevel].answer;
-        if (correctAnswer.some(answer => answer.toLowerCase() === userAnswer.toLowerCase())) {
+        const userAnswer = answerInput.value.trim().toLowerCase();
+        const correctAnswer = levels[currentLevel].answer.map(a => a.toLowerCase());
+        if (correctAnswer.includes(userAnswer)) {
             showFeedback(true);
         } else {
             showFeedback(false);
@@ -105,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     tryAgainButton.addEventListener("click", () => {
         feedbackContainer.classList.add("hidden");
-        currentLevel = Math.max(0, currentLevel - 5);
+        currentLevel = Math.max(0, currentLevel - 0);
         restartCount++;
         restartCountDisplay.textContent = `🔄 ${restartCount}`;
         questionContainer.classList.remove("hidden");
@@ -180,33 +204,17 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("winner-name").textContent = playerName;
     
         stopTimer();
-    
-    
+
+        // Skoru Firestore'a ekle
         db.collection("leaderboard").add({
           name: playerName,
           time: totalElapsedTime,
           restarts: restartCount
-        })
-        .then(() => {
-          // Veriyi ekledikten sonra sıralı bir şekilde tekrar çekelim
-          return db.collection("leaderboard").orderBy("time", "asc").get();
-        })
-        .then((snapshot) => {
-          const leaderboardList = document.getElementById("leaderboard");
-          leaderboardList.innerHTML = "";
-          let index = 1;
-          snapshot.forEach(doc => {
-            const data = doc.data();
-            const listItem = document.createElement("li");
-            listItem.innerHTML = `${index}. 👤 ${data.name} - ⏰ ${data.time}s - 🔄 ${data.restarts}`;
-            leaderboardList.appendChild(listItem);
-            index++;
-          });
         });
     }
 
     function playWrongAnswerAnimation() {
-        const emojis = ["😭",];
+        const emojis = ["😭"];
         const confettiContainer = document.createElement("div");
         confettiContainer.style.position = "fixed";
         confettiContainer.style.top = "0";

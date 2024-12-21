@@ -126,21 +126,6 @@ button:hover {
   margin-bottom: 10px;
 }
 
-/* Mobil duyarlılık */
-@media (max-width: 768px) {
-  body {
-      font-size: 14px;
-  }
-
-  #game-container {
-      padding: 15px;
-  }
-
-  input, button {
-      font-size: 14px;
-  }
-}
-
 .error {
     color: red;
     font-weight: bold;

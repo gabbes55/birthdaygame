@@ -1,33 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no" />
     <title>Irmak 3️⃣0️⃣</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-</head>
-<body>
-    <!-- ... senin mevcut HTML kodların ... -->
 
-    <!-- Firebase SDK'ları Ekle -->
-    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"></script>
+    <!-- Firebase v8 CDN (Eski Global Sürüm) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script>
-      // Burada kendi Firebase config bilgilerini yaz
+      // Kendi Firebase config değerlerinizi buraya koyun
       const firebaseConfig = {
-        apiKey: "SENIN_API_KEY",
-        authDomain: "SENIN_PROJECT_ID.firebaseapp.com",
-        projectId: "SENIN_PROJECT_ID",
+        apiKey: "AIzaSyBr_OVmUA9gEUiOm8nyYLisqYtPDWehhuY",
+        authDomain: "birthday-a3ed3.firebaseapp.com",
+        projectId: "birthday-a3ed3",
+        storageBucket: "birthday-a3ed3.appspot.com",
+        messagingSenderId: "1055643374827",
+        appId: "1:1055643374827:web:14c6aa61976e5ce0f15aae"
       };
 
-      // Firebase'i başlat
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
     </script>
-    <script src="script.js"></script>
-</body>
-</html>
+</head>
 <body>
     <header id="game-header">
         <h1>🎂Irmak Quiz Oyunu🎂</h1>
@@ -42,7 +39,7 @@
         <!-- Açılış ekranı -->
         <div id="start-container">
             <h1>Irmak'ın 30. yaş quiz oyununa hoş geldiniz!</h1>
-            <p>Irmak'ı ne kadar iyi tanıdığını göster! Maceraya atılmak için adını buraya yaz:</p>
+            <p>Irmak'ı ne kadar iyi tanıdığını göster! Soruları en hızlı sen cevapla ve lider tablosunda adını ilk sıraya yazdır! Maceraya atılmak için adını yaz ve başla!</p>
             <input type="text" id="player-name-input" placeholder="Senin Adın...">
             <button id="start-game">Başla</button>
             <p id="validation-error" class="error hidden">Lütfen adını yaz!</p>
@@ -73,11 +70,11 @@
             </div>
             <ul id="leaderboard"></ul>
             <p id="leaderboard-info" class="leaderboard-info">
-                Leaderboard gerçek değil malesef :), sonucunu ss al ve Irmak'la whatsapp'tan paylaş! 🎉🎉
+                Süpersin! Hadi sonucunu ss al ve Irmak'la whatsapp'tan paylaş! :) 🎉🎉
             </p>
         </div>
-        
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
