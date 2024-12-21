@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { question: "Irmak’ın lisesinin adı nedir?", answer: ["saint joseph", "saint-joseph"], image: "images/4.jpg" },
         { question: "Irmak’ın üniversitesinin adı nedir?", answer: ["yeditepe", "yeditepe üniversitesi"], image: "images/5.jpg" },
         { question: "Irmak’ın doktora yaptığı üniversitesinin adı nedir?", answer: ["marmara", "marmara üniversitesi"], image: "images/6.jpg" },
-        { question: "30 senenin önemli bir bölümünü eğitime adayan Irmak’ı bir tebrik edelim!", answer: ["tebrikler", "bravo", "tebrik", "tebrik ederim", "helal olsun"], image: "images/7.jpg" },
+        { question: "30 senenin önemli bir bölümünü eğitime adayan Irmak’ı bir tebrik edelim!", answer: ["tebrikler", "bravo", "tebrik", "tebrik ederim", "helal olsun","tebrikler ırmak", "bravo ırmak", "tebrik", "tebrik ederim ırmak", "helal olsun ırmak"], image: "images/7.jpg" },
         { question: "Irmak nerelidir?", answer: ["istanbul", "İstanbul"], image: "images/8.jpg" },
         { question: "Irmak gerçekte nerelidir?", answer: ["artvin"], image: "images/9.jpg" },
         { question: "Irmak’ın uzmanlık yaptığı bölüm nedir?", answer: ["periodontoloji"], image: "images/10.jpg" },
@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
         { question: "Irmak uykuyu sever mi?", answer: ["evet", "sever", "yes", "çok sever"], image: "images/17.jpg" },
         { question: "Irmak’ın gardırobunda en çok nasıl kıyafetler bulunur?", answer: ["simli", "parıltılı"], image: "images/18.jpg" },
         { question: "Irmak en son hangi ülkeye gitmiştir?", answer: ["ingiltere", "İngiltere", "uk", "birleşik krallık"], image: "images/19.jpg" },
-        { question: "Irmak'ın madalyalarının olduğu spor nedir?'", answer: ["yelken", "yelkencilik"], image: "images/20.jpg" },
+        { question: "Irmak'ın madalyalarının olduğu spor nedir?", answer: ["yelken", "yelkencilik"], image: "images/20.jpg" },
         { question: "Irmak’ın en sevdiği hayvan nedir?", answer: ["köpek"], image: "images/21.jpg" },
         { question: "Irmak'ı kaçıncı soruda tebrik ettik?", answer: ["yedi","7" ], image: "images/22.jpg" },
         { question: "Irmak'ın ormanda yaptığı sporun adı?", answer: ["oryantiring","orienteering"], image: "images/23.jpg" },
-        { question: "Evet quizin sonuna geldik katılım sağladığın için teşekkürler! Irmak'ın doğum gününü kutlarsan quiz bitiyor!", answer: ["iyi ki doğdun", "iyi ki doğdun ırmak", "İyi ki doğdun Irmak", "İyi ki doğdun İrmak"], image: "images/24.jpg" },
+        { question: "Evet quizin sonuna geldik katılım sağladığın için teşekkürler! Irmak'ın doğum gününü kutlarsan quiz bitiyor!", answer: ["iyi ki doğdun", "iyi ki doğdun ırmak", "İyi ki doğdun Irmak", "İyi ki doğdun İrmak", "dgko", "doğum günün kutlu olsun", "İyi ki doğdun", "doğum günün kutlu olsun ırmak" ], image: "images/24.jpg" },
     ];
 
     let currentLevel = 0;
